@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-public class KillerApplication extends Application {
+public class SignatureManagement extends Application {
     public static final String URL = "https://github.com/L-JINBIN/ApkSignatureKillerEx";
 
     static {
