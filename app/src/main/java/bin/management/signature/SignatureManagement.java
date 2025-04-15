@@ -26,10 +26,9 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 public class SignatureManagement extends Application {
-    public static final String URL = "https://github.com/L-JINBIN/ApkSignatureKillerEx";
 
     static {
-        String packageName = "bin.mt.signature";
+        String packageName = "com.snapchat.android";
         String signatureData = "MIICwzCCAaugAwIBAgIERUjRgzANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDEwdBbmRyb2lkMB4X\n" +
                 "DTIyMTIyNDE0NDkzMloXDTQ3MTIxODE0NDkzMlowEjEQMA4GA1UEAxMHQW5kcm9pZDCCASIwDQYJ\n" +
                 "KoZIhvcNAQEBBQADggEPADCCAQoCggEBAKjVjd0eL4NPJW4uBR40hDkHtwdTQ7INP3hqgIs7U/kM\n" +
