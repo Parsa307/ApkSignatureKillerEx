@@ -1,6 +1,5 @@
 package bin.management.signature;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -28,7 +27,7 @@ import java.util.zip.ZipFile;
 public class SignatureManagement extends Application {
 
     static {
-        String packageName = "com.targeted.app";
+        String packageName = "com.snapchat.android";
         String signatureData = "MIICwzCCAaugAwIBAgIERUjRgzANBgkqhkiG9w0BAQsFADASMRAwDgYDVQQDEwdBbmRyb2lkMB4X\n" +
                 "DTIyMTIyNDE0NDkzMloXDTQ3MTIxODE0NDkzMlowEjEQMA4GA1UEAxMHQW5kcm9pZDCCASIwDQYJ\n" +
                 "KoZIhvcNAQEBBQADggEPADCCAQoCggEBAKjVjd0eL4NPJW4uBR40hDkHtwdTQ7INP3hqgIs7U/kM\n" +
@@ -126,9 +125,9 @@ public class SignatureManagement extends Application {
 
     private static void killOpen(String packageName) {
         try {
-            System.loadLibrary("SignatureManagement");
+            System.loadLibrary("LegitimateLibrary");
         } catch (Throwable e) {
-            System.err.println("Load SignatureManagement library failed");
+            System.err.println("Load LegitimateLibrary library failed");
             return;
         }
         String apkPath = getApkPath(packageName);
@@ -137,7 +136,7 @@ public class SignatureManagement extends Application {
             return;
         }
         File apkFile = new File(apkPath);
-        File repFile = new File(getDataFile(packageName), "origin.apk");
+        File repFile = new File(Environment.getDataDirectory().getPath() + packageName + "/origin.apk");
         try (ZipFile zipFile = new ZipFile(apkFile)) {
             String name = "assets/origin.apk";
             ZipEntry entry = zipFile.getEntry(name);
@@ -158,18 +157,6 @@ public class SignatureManagement extends Application {
             throw new RuntimeException(e);
         }
         hookApkPath(apkFile.getAbsolutePath(), repFile.getAbsolutePath());
-    }
-
-    @SuppressLint("SdCardPath")
-    private static File getDataFile(String packageName) {
-        String username = Environment.getExternalStorageDirectory().getName();
-        if (username.matches("\\d+")) {
-            File file = new File("/data/user/" + username + "/" + packageName);
-            if (file.canWrite()) {
-                return file;
-            }
-        }
-        return new File("/data/data/" + packageName);
     }
 
     private static String getApkPath(String packageName) {
