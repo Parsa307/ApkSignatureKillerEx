@@ -8,6 +8,7 @@ android {
         minSdk 21
         //noinspection OldTargetApi
         targetSdk 35
+        multiDexEnabled false
         externalNativeBuild {
             cmake {
                 cppFlags ""
